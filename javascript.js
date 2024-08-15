@@ -43,7 +43,7 @@ for (let i = 0; i < menuLinks.length; i++) {
   topMenuEl.appendChild(linkEl);
 }
 
-// SUB-MENU ELEMENT 
+// SubMenu element
 const subMenuEl = document.getElementById("sub-menu");
 subMenuEl.style.height = "100%";
 subMenuEl.style.backgroundColor = "var(--sub-menu-bg)";
@@ -79,31 +79,35 @@ topMenuEl.addEventListener("click", function (event) {
       subMenuEl.style.top = "100%"; // Show the submenu
       buildSubmenu(clickedLinkObj.subLinks);
     } else {
-      subMenuEl.style.top = "0"; // Hide the submenu if no subLinks
-      subMenuEl.innerHTML = ''; // Clear submenu content
+      // hide the submenu if no subLinks
+      subMenuEl.style.top = "0";
+      // clear submenu content
+      subMenuEl.innerHTML = '';
       if (clickedLinkObj.text.toLowerCase() === 'about') {
         mainEl.innerHTML = `<h1>About</h1>`;
       }
     }
   } else {
-    subMenuEl.style.top = "0"; // Hide the submenu when link becomes inactive
-    subMenuEl.innerHTML = ''; // Clear submenu content
+    // hide the submenu when link becomes inactive
+    subMenuEl.style.top = "0";
+    // clear submenu content
+    subMenuEl.innerHTML = '';
   }
 
 });
 
 function buildSubmenu(subLinks) {
-  // Clear the current contents of subMenuEl
+  // clear the current contents of subMenuEl
   subMenuEl.innerHTML = '';
   // Iterate over the subLinks array
   for (let link of subLinks) {
     // create a new <a> element
     let subLinkEl = document.createElement("a");
-    // Set the href attribute of the <a> element
+    // set the href attribute of the <a> element
     subLinkEl.setAttribute("href", link.href);
-    // Set the content of the <a> element
+    // set the content of the <a> element
     subLinkEl.textContent = link.text;
-    // Append the new <a> element to subMenuEl
+    // append the new <a> element to subMenuEl
     subMenuEl.appendChild(subLinkEl);
   }
 
@@ -112,7 +116,7 @@ function buildSubmenu(subLinks) {
 }
 
 subMenuEl.addEventListener("click", function (event) {
-  event.preventDefault() // event.preventDefault() to prevent the default action of the <a> tag, which is navigating to a new page.
+  event.preventDefault()
 
   //should immediately return if the element clicked was not an <a> element.
   if (!event.target.matches("a")) {
@@ -120,11 +124,11 @@ subMenuEl.addEventListener("click", function (event) {
   }
 
 
-  // Log the content of the <a> to verify the handler is working.
+  // log the content of the <a> to verify the handler is working.
   console.log(event.target.textContent);
   // should set the CSS top property of subMenuEl to 0.
   subMenuEl.style.top = "0";
-  // Remove the active class from each <a> element in topMenuLinks.
+  // remove the active class from each <a> element in topMenuLinks.
   topMenuLinks.forEach((link) => {
     link.classList.remove("active")
   });
